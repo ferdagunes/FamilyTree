@@ -2,24 +2,16 @@ package FamilyTree;
 
 public class Relation {
     //upper
-    Relation anne;
-    Relation baba;
-    Relation amca;
-    Relation anneanne;
-    Relation babaanne;
-    Relation dede;
-    Relation teyze;
-    Relation dayı;
-    Relation hala;
+    Relation parent;
     //lower
-    Relation gelin;
-    Relation damat;
-    Relation yeğen;
+    Relation child;
     //sibling
-    Relation abla;
-    Relation abi;
-    Relation kardeş;
-    Relation baldız;
-    Relation kayınço;
+    Relation bro;
 
-}
+
+
+    public Relation getParent() { return parent;}
+    public Relation getChild() { return child; }
+    public void setChild(Relation child) { this.child = child; }
+    public Relation getBro() { return bro; }
+    }
