@@ -1,18 +1,21 @@
 package FamilyTree;
+
 public class Person {
     private String name;
     private String surname;
-    private char gender;
+    private Gender gender;
     private int age;
 
 
-    public Person(String name, String surname, char gender, int age) {
+    public Person(String name, String surname, Gender gender, int age) {
         this.name = name;
         this.surname =surname;
         this.gender = gender;
-        this.age =age;
+        this.age =age; }
 
-    }
+    public enum Gender{MALE, FEMALE}
+
+
 
     public String getName() {
         return name;
@@ -20,26 +23,25 @@ public class Person {
     public String getSurname() {
         return surname;
     }
-    public char getGender() {
-        return gender;
-    }
-    public int getAge(){
-        return age;
-    }
+    public Gender getGender() { return gender; }
+    public int getAge(){ return age; }
+    public void setName(String name) { this.name= name; }
+    public void setSurname(String surname) { this.surname= surname; }
 
-    public void setName(String name) {
-        this.name = name;
+
+    public void setMother( Person mother){
+        if (mother.getGender()== Gender.FEMALE){
+        }else{
+            throw new IllegalArgumentException("Mother cannot be male");}
     }
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-    public void setGender(char gender) {
-        this.gender = gender;
-    }
-    public void setAge(int age) {
-        this.age = age;
-    }
+    public void setFather(Person father){
+        if(father.getGender()==Gender.MALE){
+
+        }else{
+            throw new IllegalArgumentException("Father cannot be female");
+        }
 }
+    }
 
 
 
