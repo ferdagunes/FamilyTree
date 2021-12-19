@@ -2,19 +2,21 @@ package FamilyTree;
 import java.util.*;
 import java.util.ArrayList;
  public class Main {
+
      public static void main(String[] args) {
          NodeImp tree = new NodeImp();
          tree.display();
+         Scanner s = new Scanner(System.in);
      }
  }
      class NodeImp {
          class Node {
 
-             int data;
+             int currentParent;
              ArrayList<Node> children;
 
              Node(int data) {
-                 this.data = data;
+                 this.currentParent = currentParent;
                  children = new ArrayList<>();
              }
          }
@@ -28,16 +30,20 @@ import java.util.ArrayList;
 
          private Node constructNI(Scanner s, Node parent, int i) {
              if (parent == null) {
-                 System.out.println("There is no parent of this. ");
+                 System.out.println("There is no parent of this tree. ");
                  System.out.println(" Enter the parent..");
+                 String name = s.nextLine();
+                 System.out.println("Name is: " + name);
+                 System.out.println("How many children "+ name + " have?");
              } else {
-                 System.out.println(" enter the data for " + i + " the child of " + parent.data);
+                 System.out.println(" enter the data for " + i + " the child of " + parent.currentParent);
 
              }
-             int data = s.nextInt();
-             Node node = new Node(data);
 
-             System.out.println("number of children for" + node.data);
+             int currentParent = s.nextInt();
+             Node node = new Node(currentParent);
+
+             System.out.println("number of children for " + node.currentParent);
              int n = s.nextInt();
 
              for (int c = 0; c < n; c++) {
@@ -50,14 +56,15 @@ import java.util.ArrayList;
              display(this.root);
          }
          private void display(Node node){
-             String str= node.data + "---->";
+             String st= node.currentParent + "---->";
 
              for (Node child: node.children){
-                 str += child.data + " ,  ";
+                 st += child.currentParent + " ,  ";
              }
-             System.out.println(str);
+             System.out.println(st);
              for (Node child: node.children){
                  display(child);
              }
          }
+
      }
