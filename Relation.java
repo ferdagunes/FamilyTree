@@ -7,6 +7,8 @@ public class Relation {
     Relation child;
     //sibling
     Relation bro;
+    //marry
+    Relation marriedWith;
 
 
 
@@ -14,4 +16,5 @@ public class Relation {
     public Relation getChild() { return child; }
     public void setChild(Relation child) { this.child = child; }
     public Relation getBro() { return bro; }
+    public Relation getMarriedWith(){return marriedWith; }
     }

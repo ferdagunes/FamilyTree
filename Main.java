@@ -36,14 +36,14 @@ import java.util.ArrayList;
                  System.out.println("Name is: " + name);
                  System.out.println("How many children "+ name + " have?");
              } else {
-                 System.out.println(" enter the data for " + i + " the child of " + parent.currentParent);
+                 System.out.println(" Enter the data for " + i + " the child of " + parent.currentParent);
 
              }
 
              int currentParent = s.nextInt();
              Node node = new Node(currentParent);
 
-             System.out.println("number of children for " + node.currentParent);
+             System.out.println("Number of children for " + node.currentParent);
              int n = s.nextInt();
 
              for (int c = 0; c < n; c++) {
