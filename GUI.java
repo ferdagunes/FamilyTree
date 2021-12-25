@@ -75,56 +75,9 @@ public class GUI implements ActionListener {
 
     public GUI() {
         frame = new JFrame();
-        button = new JButton("Create New Tree");
+        button = new JButton("button");
         button.addActionListener(this);
         label = new JLabel("");
-
-        panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
-        panel.setLayout(new GridLayout());
-        panel.add(button);
-        panel.add(label);
-
-        frame.add(panel, BorderLayout.PAGE_START);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-
-        button = new JButton("Merge two trees");
-        button.addActionListener(this);
-        label = new JLabel();
-
-        panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
-        panel.setLayout(new GridLayout());
-        panel.add(button);
-        panel.add(label);
-
-        frame.add(panel, BorderLayout.AFTER_LINE_ENDS);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-
-
-        button = new JButton("Display Previous Trees");
-        button.addActionListener(this);
-
-        panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
-        panel.setLayout(new GridLayout());
-        panel.add(button);
-        panel.add(label);
-
-        frame.add(panel, BorderLayout.AFTER_LAST_LINE);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-
-
-
-
-
-
     }
 
 
