@@ -14,6 +14,7 @@ public class GUI implements ActionListener {
     private JFrame frame;
     //njhdbfvjhblvjfhbdljfvh
 // mlkmlkmlkmlkm
+    //kvdnfkvjdfnknjvkjf
     public GUI() {
         frame = new JFrame();
         button = new JButton("bir buton");
