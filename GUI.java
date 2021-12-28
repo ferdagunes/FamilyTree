@@ -238,15 +238,37 @@ public class GUI extends JFrame implements ActionListener {
                 f.setVisible(true);
             }
         });
+
         btt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JFrame fr = new JFrame("Family Tree.Inc");
+                JLabel la1, la2;
+                la1 = new JLabel("Please select the trees to merge.");
+                la1.setBounds(70, 70, 250, 50);
+                la2 = new JLabel("At a time only 2 trees can merge");
+                la2.setBounds(70, 120, 200, 50);
+                fr.add(la1);
+                fr.add(la2);
+                fr.setSize(700, 700);
+                fr.setLayout(null);
+                fr.setVisible(true);
 
             }
         });
+
         bttn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JFrame fra = new JFrame("Family Tree.Inc");
+                JLabel la1;
+                la1 = new JLabel("Please select the tree to delete.");
+                la1.setBounds(70, 70, 250, 50);
+                fra.add(la1);
+                fra.setSize(700, 700);
+                fra.setLayout(null);
+                fra.setVisible(true);
+
 
             }
         });
