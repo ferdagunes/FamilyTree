@@ -3,6 +3,9 @@ package FamilyTree;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 public class GUI extends JFrame implements ActionListener {
     private JLabel label;
@@ -23,6 +26,7 @@ public class GUI extends JFrame implements ActionListener {
     private JComboBox date;
     private JComboBox month;
     private JComboBox year;
+    private JComboBox genderc;
     private JLabel add;
     private JTextArea tadd;
     private JCheckBox term;
@@ -31,7 +35,7 @@ public class GUI extends JFrame implements ActionListener {
     private JTextArea tout;
     private JLabel res;
     private JTextArea resadd;
-
+    private String genders[] = {"E","K"};
     private String dates[]
             = { "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "10",
@@ -136,23 +140,11 @@ public class GUI extends JFrame implements ActionListener {
                 gender.setLocation(100, 200);
                 c.add(gender);
 
-                male = new JRadioButton("Male");
-                male.setFont(new Font("Arial", Font.PLAIN, 15));
-                male.setSelected(true);
-                male.setSize(75, 20);
-                male.setLocation(200, 200);
-                c.add(male);
-
-                female = new JRadioButton("Female");
-                female.setFont(new Font("Arial", Font.PLAIN, 15));
-                female.setSelected(false);
-                female.setSize(80, 20);
-                female.setLocation(275, 200);
-                c.add(female);
-
-                gengp = new ButtonGroup();
-                gengp.add(male);
-                gengp.add(female);
+                genderc = new JComboBox(genders);
+                genderc.setFont(new Font("Arial", Font.PLAIN, 15));
+                genderc.setSize(50, 20);
+                genderc.setLocation(200, 200);
+                c.add(genderc);
 
                 dob = new JLabel("DOB");
                 dob.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -201,7 +193,37 @@ public class GUI extends JFrame implements ActionListener {
                 sub.setFont(new Font("Arial", Font.PLAIN, 15));
                 sub.setSize(100, 20);
                 sub.setLocation(150, 450);
-                sub.addActionListener(this);
+                sub.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+
+                        String name = tname.getText();
+                        String bdate = date.getSelectedItem().toString()+"-"+ month.getSelectedItem().toString()+"-"+ year.getSelectedItem().toString();
+                        String gender = genderc.getSelectedItem().toString();
+
+
+
+                        String url = "jdbc:sqlite:famtree.db";
+                        Connection conn = null;
+                        try{
+                            conn = DriverManager.getConnection(url,"","");
+                            JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
+                            Statement stsec = conn.createStatement() ;
+                            stsec.executeUpdate("INSERT INTO person (name, gender, bdate)"+
+                                    "VALUES ('"+name+"', '"+gender+"','"+bdate+"')");
+                            conn.close();
+                        }
+                        catch(Exception p)
+                        {
+                            JOptionPane.showMessageDialog(null, p.getMessage());
+                        }
+
+
+
+                    }
+
+
+
+                });
                 c.add(sub);
 
                 reset = new JButton("Reset");
