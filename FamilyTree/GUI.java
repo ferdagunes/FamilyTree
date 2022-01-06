@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class GUI extends JFrame implements ActionListener {
@@ -35,7 +36,7 @@ public class GUI extends JFrame implements ActionListener {
     private JTextArea tout;
     private JLabel res;
     private JTextArea resadd;
-    private String genders[] = {"E","K"};
+    private String genders[] = {"M","F"};
     private String dates[]
             = { "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "10",
@@ -195,7 +196,7 @@ public class GUI extends JFrame implements ActionListener {
                 sub.setLocation(150, 450);
                 sub.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-
+                        tout.setText("");
                         String name = tname.getText();
                         String bdate = date.getSelectedItem().toString()+"-"+ month.getSelectedItem().toString()+"-"+ year.getSelectedItem().toString();
                         String gender = genderc.getSelectedItem().toString();
@@ -218,6 +219,21 @@ public class GUI extends JFrame implements ActionListener {
                         }
 
 
+                        String sql ="SELECT * FROM person" ;
+                        try{
+                            conn = DriverManager.getConnection(url,"","");
+                            Statement st = conn.createStatement() ;
+                            ResultSet rs  = st.executeQuery(sql);
+
+                            while(rs.next()) {
+
+                                tout.append(rs.getString("ID")+"  "+ rs.getString("name")+"  "+ rs.getString("gender")+"  "+ rs.getString("bDate") + "\n");
+
+                            }
+
+                        }catch(Exception t) {}
+
+
 
                     }
 
@@ -238,7 +254,6 @@ public class GUI extends JFrame implements ActionListener {
                 tout.setSize(300, 400);
                 tout.setLocation(500, 100);
                 tout.setLineWrap(true);
-                tout.setEditable(false);
                 c.add(tout);
 
                 res = new JLabel("");
