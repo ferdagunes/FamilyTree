@@ -3,10 +3,8 @@ package FamilyTree;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class GUI extends JFrame implements ActionListener {
     private JLabel label;
@@ -33,10 +31,16 @@ public class GUI extends JFrame implements ActionListener {
     private JCheckBox term;
     private JButton sub;
     private JButton reset;
+    private JButton pickaCh;
     private JTextArea tout;
     private JLabel res;
     private JTextArea resadd;
     private String genders[] = {"M","F"};
+    private JLabel children ;
+    public JComboBox childPick;
+
+
+    private ArrayList<String> childList = new ArrayList<String>();
     private String dates[]
             = { "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "10",
@@ -171,25 +175,89 @@ public class GUI extends JFrame implements ActionListener {
                 year.setLocation(320, 250);
                 c.add(year);
 
-                add = new JLabel("Address");
-                add.setFont(new Font("Arial", Font.PLAIN, 18));
-                add.setSize(100, 20);
-                add.setLocation(100, 300);
-                c.add(add);
+                children = new JLabel("Children:");
+                children.setFont(new Font("Arial", Font.PLAIN, 18));
+                children.setSize(100, 20);
+                children.setLocation(100, 300);
+                c.add(children);
+                childList.add("0");
+                String url = "jdbc:sqlite:famtree.db";
+                Connection conn = null;
+                try {
+                    conn = DriverManager.getConnection(url, "", "");
+                    JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
+                    Statement stChild = conn.createStatement();
+                    String sql ="SELECT * FROM person" ;
+                    ResultSet rs  = stChild.executeQuery(sql);
+                    while(rs.next()) {
 
-                tadd = new JTextArea();
-                tadd.setFont(new Font("Arial", Font.PLAIN, 15));
-                tadd.setSize(200, 75);
-                tadd.setLocation(200, 300);
-                tadd.setLineWrap(true);
-                c.add(tadd);
+                        childList.add(rs.getString("ID")+"-"+ rs.getString("name")+"-"+ rs.getString("gender")/*+"  "+ rs.getString("bDate")*/ );
+                       /*ArrayList<String> childId = new ArrayList<String>();
+                        childId.add(rs.getString("ID"));*/
+                    }
+
+                }
+                catch (SQLException f){
+
+                }
+
+
+                String[] childArray = childList.toArray(new String[childList.size()]);
+                childPick = new JComboBox(childArray);
+                childPick.setFont(new Font("Arial", Font.PLAIN, 15));
+                childPick.setSize(150, 20);
+                childPick.setLocation(200, 300);
+                c.add(childPick);
+                childPick.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+
+                    }});
+
+                pickaCh = new JButton("pick");
+                pickaCh.setFont(new Font("Arial", Font.PLAIN, 15));
+                pickaCh.setSize(70, 20);
+                pickaCh.setLocation(360, 300);
+                c.add(pickaCh);
+                pickaCh.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        String url = "jdbc:sqlite:famtree.db";
+                        Connection conn = null;
+                        try{
+                            String name = tname.getText();
+                            String bdate = date.getSelectedItem().toString()+"-"+ month.getSelectedItem().toString()+"-"+ year.getSelectedItem().toString();
+                            String gender = genderc.getSelectedItem().toString();
+
+                            conn = DriverManager.getConnection(url,"","");
+                            JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
+                            String selectedValue = childPick.getSelectedItem().toString();
+                            String[] childData = selectedValue.split("-");
+                            String childId = childData[0];
+
+                            Statement stPickCh = conn.createStatement() ;
+                            stPickCh.executeUpdate("INSERT INTO famTree (name, gender, bdate, parentOf)"+
+                                    "VALUES ('"+name+"', '"+gender+"','"+bdate+"','"+childId+"')");
+                        }
+                        catch (Exception f){}
+                    }});
+
+
+                /*
+
+                DefaultListModel<String> childrenList = new DefaultListModel<>();
+                JList<String> cList = new JList<>(childrenList);
+                childPick = cList;
+                childPick.setFont(new Font("Arial", Font.PLAIN, 15));
+                childPick.setSize(200, 75);
+                childPick.setLocation(200, 300);
+
+                c.add(childPick);
 
                 term = new JCheckBox("Accept Terms And Conditions.");
                 term.setFont(new Font("Arial", Font.PLAIN, 15));
                 term.setSize(250, 20);
                 term.setLocation(150, 400);
                 c.add(term);
-
+                */
                 sub = new JButton("Submit");
                 sub.setFont(new Font("Arial", Font.PLAIN, 15));
                 sub.setSize(100, 20);
@@ -211,6 +279,9 @@ public class GUI extends JFrame implements ActionListener {
                             Statement stsec = conn.createStatement() ;
                             stsec.executeUpdate("INSERT INTO person (name, gender, bdate)"+
                                     "VALUES ('"+name+"', '"+gender+"','"+bdate+"')");
+                            /*Statement stFamtree = conn.createStatement() ;
+                            stFamtree.executeUpdate("INSERT INTO famTree (name, gender, bdate)"+
+                                    "VALUES ('"+name+"', '"+gender+"','"+bdate+"')");*/
                             conn.close();
                         }
                         catch(Exception p)
@@ -219,19 +290,26 @@ public class GUI extends JFrame implements ActionListener {
                         }
 
 
-                        String sql ="SELECT * FROM person" ;
+                        String sql ="SELECT  f.name AS 'f.name' , p.name AS 'p.name' FROM person p, famTree f WHERE p.ID = f.parentOf"  ;
+
                         try{
                             conn = DriverManager.getConnection(url,"","");
                             Statement st = conn.createStatement() ;
                             ResultSet rs  = st.executeQuery(sql);
 
+
                             while(rs.next()) {
 
+                                /*
                                 tout.append(rs.getString("ID")+"  "+ rs.getString("name")+"  "+ rs.getString("gender")+"  "+ rs.getString("bDate") + "\n");
+                                */
+                                tout.append(rs.getString("f.name")+" is parent of "+ rs.getString("p.name")+ "\n");
 
                             }
 
-                        }catch(Exception t) {}
+                        }catch(Exception t) {
+                            JOptionPane.showMessageDialog(null, t.getMessage());
+                        }
 
 
 
