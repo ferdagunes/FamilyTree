@@ -30,7 +30,6 @@ public class GUI extends JFrame implements ActionListener {
     private JTextArea tadd;
     private JCheckBox term;
     private JButton sub;
-    private JButton reset;
     private JButton pickaCh;
     private JTextArea tout;
     private JLabel res;
@@ -331,12 +330,7 @@ public class GUI extends JFrame implements ActionListener {
                 });
                 c.add(sub);
 
-                reset = new JButton("Reset");
-                reset.setFont(new Font("Arial", Font.PLAIN, 15));
-                reset.setSize(100, 20);
-                reset.setLocation(270, 450);
-                reset.addActionListener(this);
-                c.add(reset);
+
 
                 tout = new JTextArea();
                 tout.setFont(new Font("Arial", Font.PLAIN, 15));
