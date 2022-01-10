@@ -290,7 +290,7 @@ public class GUI extends JFrame implements ActionListener {
                         }
 
 
-                        String sql ="SELECT  f.name AS 'f.name' , p.name AS 'p.name' FROM person p, famTree f WHERE p.ID = f.parentOf"  ;
+                        String sql ="SELECT  f.name AS 'f.name', f.gender AS 'f.gender' , p.name AS 'p.name'  FROM person p, famTree f WHERE p.ID = f.parentOf"  ;
 
                         try{
                             conn = DriverManager.getConnection(url,"","");
@@ -299,11 +299,22 @@ public class GUI extends JFrame implements ActionListener {
 
 
                             while(rs.next()) {
-
                                 /*
                                 tout.append(rs.getString("ID")+"  "+ rs.getString("name")+"  "+ rs.getString("gender")+"  "+ rs.getString("bDate") + "\n");
                                 */
-                                tout.append(rs.getString("f.name")+" is parent of "+ rs.getString("p.name")+ "\n");
+
+                                JOptionPane.showMessageDialog(null, rs.getString("f.gender") );
+
+                                if(rs.getString("f.gender").equals("F")){
+
+                                    tout.append(rs.getString("f.name")+" is mother of "+ rs.getString("p.name")+ "\n");
+                                }
+                                else{
+                                    tout.append(rs.getString("f.name")+" is father of "+ rs.getString("p.name")+ "\n");
+
+                                }
+
+
 
                             }
 
