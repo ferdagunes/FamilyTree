@@ -10,7 +10,7 @@ public class GUI extends JFrame implements ActionListener {
     private JLabel label;
     private JButton button;
     private JPanel panel;
-    private JFrame frame; // this frame is for taskbar
+    private JFrame frame;
     private Container c;
     private JLabel title;
     private JLabel name;
@@ -38,7 +38,6 @@ public class GUI extends JFrame implements ActionListener {
     private JLabel children ;
     public JComboBox childPick;
 
-
     private ArrayList<String> childList = new ArrayList<String>();
     private String dates[]
             = { "1", "2", "3", "4", "5",
@@ -63,6 +62,8 @@ public class GUI extends JFrame implements ActionListener {
 
 
     public GUI() {
+        var menuBar = new JMenuBar();
+        var fileMenu = new JMenu("File");
 
         JFrame f = new JFrame("Family Tree.Inc");
         JLabel la1, la2;
@@ -81,12 +82,25 @@ public class GUI extends JFrame implements ActionListener {
         f.add(bt);
         f.setLayout(null);
         f.setVisible(true);
+
+        var new_tree = new JMenuItem(bt.getIcon());
+        fileMenu.add(new_tree);
+        menuBar.add(fileMenu);
+        setJMenuBar(menuBar);
+        menuBar.setVisible(true);
+
         JButton btt = new JButton("Merge Trees");
         btt.setBounds(70, 220, 155, 50);
         btt.addActionListener(this);
         f.add(btt);
         f.setLayout(null);
         f.setVisible(true);
+
+        var merge_trees = new JMenuItem(btt.getIcon());
+        fileMenu.add(merge_trees);
+        menuBar.add(fileMenu);
+        setJMenuBar(menuBar);
+        menuBar.setVisible(true);
 
         JButton bttn = new JButton("Delete Tree");
         bttn.setBounds(70, 280, 155, 50);
@@ -95,6 +109,11 @@ public class GUI extends JFrame implements ActionListener {
         f.setLayout(null);
         f.setVisible(true);
 
+        var delete_trees = new JMenuItem(bttn.getIcon());
+        fileMenu.add(delete_trees);
+        menuBar.add(fileMenu);
+        setJMenuBar(menuBar);
+        menuBar.setVisible(true);
 
         bt.addActionListener(new ActionListener() {
             @Override
@@ -268,8 +287,6 @@ public class GUI extends JFrame implements ActionListener {
                         String bdate = date.getSelectedItem().toString()+"-"+ month.getSelectedItem().toString()+"-"+ year.getSelectedItem().toString();
                         String gender = genderc.getSelectedItem().toString();
 
-
-
                         String url = "jdbc:sqlite:famtree.db";
                         Connection conn = null;
                         try{
@@ -329,8 +346,6 @@ public class GUI extends JFrame implements ActionListener {
 
                 });
                 c.add(sub);
-
-
 
                 tout = new JTextArea();
                 tout.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -393,38 +408,30 @@ public class GUI extends JFrame implements ActionListener {
             }
         });
 
-        frame = new JFrame("Main Menu");
-        frame.setSize(500,400);
-        panel = new JPanel();
-        frame.add(panel);
-        frame.setVisible(true);
+
     }
 
     public static void main(String args[]) {
-        GUI gui = new GUI();
-        gui.showToolbar();
+        new GUI();
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
-    private void showToolbar(){
-        JToolBar toolbar = new JToolBar("Main Menu");
-
-        toolbar.setFloatable(false);
-
-        JButton button1 = new JButton("1");
-        JButton button2 = new JButton("2");
-        JButton button3 = new JButton("3");
-        toolbar.add(button1);
-        toolbar.add(button2);
-        toolbar.add(button3);
-
-        panel.add(toolbar);
-        frame.setVisible(true);
-    }
+    //private void showToolbar(){
+    //    toolbar = new JToolBar("");
+//
+    //    toolbar.setFloatable(false);
+//
+    //    JButton button1 = new JButton("1");
+    //    JButton button2 = new JButton("2");
+    //    JButton button3 = new JButton("3");
+    //    toolbar.add(button1);
+    //    toolbar.add(button2);
+    //    toolbar.add(button3);
+//
+    //}
 }
 
 
