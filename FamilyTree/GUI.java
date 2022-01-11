@@ -10,7 +10,7 @@ public class GUI extends JFrame implements ActionListener {
     private JLabel label;
     private JButton button;
     private JPanel panel;
-    private JFrame frame;
+    private JFrame frame; // this frame is for taskbar
     private Container c;
     private JLabel title;
     private JLabel name;
@@ -393,17 +393,37 @@ public class GUI extends JFrame implements ActionListener {
             }
         });
 
+        frame = new JFrame("Main Menu");
+        frame.setSize(500,400);
+        panel = new JPanel();
+        frame.add(panel);
+        frame.setVisible(true);
     }
 
     public static void main(String args[]) {
-        new GUI();
-
+        GUI gui = new GUI();
+        gui.showToolbar();
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+    private void showToolbar(){
+        JToolBar toolbar = new JToolBar("Main Menu");
+
+        toolbar.setFloatable(false);
+
+        JButton button1 = new JButton("1");
+        JButton button2 = new JButton("2");
+        JButton button3 = new JButton("3");
+        toolbar.add(button1);
+        toolbar.add(button2);
+        toolbar.add(button3);
+
+        panel.add(toolbar);
+        frame.setVisible(true);
     }
 }
 
