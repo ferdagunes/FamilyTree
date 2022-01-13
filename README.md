@@ -6,10 +6,10 @@ Create New Tree Button stands for
 Switch Button stands for
 
 AUTHORS
-Ferda Güneş
-Tugay Şevki Sarsılmaz
-Selin Doğa Orhan
-Aytuğ Han
+Ferda Güneş /n
+Tugay Şevki Sarsılmaz /n
+Selin Doğa Orhan /n
+Aytuğ Han /n
 
 INSTALLATION INSTRUCTIONS
 
