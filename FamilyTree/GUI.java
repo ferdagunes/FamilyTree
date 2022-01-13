@@ -419,55 +419,8 @@ public class GUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
     }
-    //private void showToolbar(){
-    //    toolbar = new JToolBar("");
-//
-    //    toolbar.setFloatable(false);
-//
-    //    JButton button1 = new JButton("1");
-    //    JButton button2 = new JButton("2");
-    //    JButton button3 = new JButton("3");
-    //    toolbar.add(button1);
-    //    toolbar.add(button2);
-    //    toolbar.add(button3);
-//
-    //}
+  
 }
 
 
-    /*
-public class GUI implements ActionListener {
-    // basit temel bir ui olarak yazdım, ağaç yapısı yok
-
-    private JLabel label;
-    private JButton button;
-    private JPanel panel;
-    private JFrame frame;
-
-
-
-
-    public GUI() {
-        frame = new JFrame();
-        button = new JButton("button");
-        button.addActionListener(this);
-        label = new JLabel("");
-    }
-
-
-    public static void main(String[] args) {
-        new GUI();
-
-    }
-
-    // buralar değişebilir
-    // buraya butona basılınca bir aksiyon gerçekleştirmesi için eklemiştim ama eklemedim
-    @Override
-    public void actionPerformed(ActionEvent newTree ) {
-
-
-    }
-
-
-}
-*/
+   
