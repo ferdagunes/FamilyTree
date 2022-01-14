@@ -1,17 +1,17 @@
 package FamilyTree;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.xml.transform.Result;
-import java.awt.*;
-import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.*;
-import java.util.ArrayList;
+        import javax.swing.*;
+        import javax.swing.border.EmptyBorder;
+        import javax.xml.transform.Result;
+        import java.awt.*;
+        import java.awt.event.*;
+        import java.sql.Connection;
+        import java.sql.DriverManager;
+        import java.sql.ResultSet;
+        import java.sql.SQLException;
+        import java.sql.Statement;
+        import java.sql.*;
+        import java.util.ArrayList;
 
 public class GUI extends JFrame implements ActionListener {
     private JLabel label;
@@ -333,6 +333,4 @@ public class GUI extends JFrame implements ActionListener {
     }
 
 }
-
-
 
