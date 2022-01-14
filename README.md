@@ -16,10 +16,10 @@ Also you can take the screenshots of your tree so you can save your tree as a .j
 
 
 AUTHORS
-Ferda Güneş 
-Tugay Şevki Sarsılmaz 
-Selin Doğa Orhan 
-Aytuğ Han 
+Ferda Güneş;
+Tugay Şevki Sarsılmaz;
+Selin Doğa Orhan;
+Aytuğ Han;
 
 INSTALLATION INSTRUCTIONS
 
