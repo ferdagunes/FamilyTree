@@ -172,7 +172,6 @@ public class GUI extends JFrame implements ActionListener {
                         return;
                     }
                     fetch.close();
-                    JOptionPane.showMessageDialog(null,"INSERT INTO familyTrees VALUES(NULL,'"+name+"');");
                     cmd.executeUpdate("INSERT INTO familyTrees VALUES(NULL,'"+name+"');");
                     fetch=cmd.executeQuery("SELECT ID from familyTrees ORDER BY ID DESC");
                     fetch.next();
