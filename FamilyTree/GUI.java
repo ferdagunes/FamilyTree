@@ -97,10 +97,6 @@ public class GUI extends JFrame implements ActionListener {
         f.setLayout(null);
         f.setVisible(true);
 
-        comboBox = new JComboBox();
-        comboBox.setBounds(430, 160, 150, 21);
-        f.add(comboBox);
-        fillComboBox();
 
 
        /* JLabel lblNewLabel_existingtree = new JLabel("Pick an existing tree to delete or view and edit.");
@@ -147,7 +143,10 @@ public class GUI extends JFrame implements ActionListener {
 
 
 
-
+        comboBox = new JComboBox();
+        comboBox.setBounds(430, 160, 150, 21);
+        f.add(comboBox);
+        fillComboBox();
 
 
 
