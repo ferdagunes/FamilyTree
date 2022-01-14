@@ -141,12 +141,12 @@ public class GUI extends JFrame implements ActionListener {
 
 
 
-
-
         comboBox = new JComboBox();
         comboBox.setBounds(430, 160, 150, 21);
         f.add(comboBox);
         fillComboBox();
+
+
 
 
 
